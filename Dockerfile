@@ -49,6 +49,7 @@ RUN apt-get update \
  		 r-base \
  		 r-base-dev \
  		 r-recommended \
+		 libcurl4-gnutls-dev \
   	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
  	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
  	&& ln -s /usr/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
@@ -67,6 +68,7 @@ RUN R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('stringi', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('stringr', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('dplyr', repos='https://cran.r-project.org/')" \
+&& R -e "install.packages('RCurl', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('BiocManager', repos='https://cran.r-project.org/')" \
 && R -e "BiocManager::install('GenomicRanges')" \
 && R -e "BiocManager::install('Biostrings')"
