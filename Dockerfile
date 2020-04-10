@@ -61,7 +61,7 @@ RUN apt-get update \
 
 # basic shiny functionality
 RUN apt-get update \
-&& apt-get install -y
+&& apt-get install -y ncbi-blast+
 
 RUN R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('XML', repos='https://cran.r-project.org/')" \
