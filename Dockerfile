@@ -50,6 +50,7 @@ RUN apt-get update \
  		 r-base-dev \
  		 r-recommended \
 		 libcurl4-gnutls-dev \
+		 libxml2-devel \
   	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
  	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
  	&& ln -s /usr/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
