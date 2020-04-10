@@ -14,7 +14,7 @@ RUN useradd docker \
 	&& mkdir /home/docker \
 	&& mkdir /home/docker/app \
 	&& mkdir /home/docker/task \
-	&& chown docker:docker /home/docker \
+	&& chown -R docker:docker /home/docker \
 	&& addgroup docker staff
 
 RUN apt-get update \
