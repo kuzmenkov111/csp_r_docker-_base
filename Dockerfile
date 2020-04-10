@@ -58,8 +58,10 @@ RUN apt-get update \
  	&& rm -rf /var/lib/apt/lists/*
 
 # basic shiny functionality
-RUN sudo apt-get install -y ncbi-blast+ \
-&& R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
+RUN sudo apt-get update \
+&& apt-get install -y ncbi-blast+
+
+RUN sudo R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('XML', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('jsonlite', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('stringi', repos='https://cran.r-project.org/')" \
