@@ -10,12 +10,14 @@ LABEL org.label-schema.license="GPL-2.0" \
 ## Set a default user. Available via runtime flag `--user docker` 
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 ## User should also have & own a home directory (for rstudio or linked volumes to work properly). 
-RUN useradd docker \
-	&& mkdir /home/docker \
-	&& mkdir /home/docker/app \
-	&& mkdir /home/docker/task \
-	&& chown -R docker:docker /home/docker \
-	&& addgroup docker staff
+RUN useradd -u 555 dockerapp \
+	&& mkdir /home/dockerapp \
+	&& mkdir /home/dockerapp/app \
+	&& mkdir /home/dockerapp/task \
+	&& mkdir /files \
+	&& chown dockerapp:dockerapp /home/dockerapp \
+	&& chown dockerapp:dockerapp /files \
+	&& addgroup dockerapp staff
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -49,8 +51,6 @@ RUN apt-get update \
  		 r-base \
  		 r-base-dev \
  		 r-recommended \
-		 libcurl4-gnutls-dev \
-		 libxml2-dev \
   	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
  	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
  	&& ln -s /usr/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
@@ -60,16 +60,16 @@ RUN apt-get update \
  	&& rm -rf /var/lib/apt/lists/*
 
 # basic shiny functionality
-RUN apt-get update \
-&& apt-get install -y ncbi-blast+
-
-RUN R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
+RUN apt-get install -y ncbi-blast+ \
+                      librabbitmq-dev \
+&& R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
+&& R -e "install.packages('remotes', repos='https://cran.r-project.org/')" \
+&& R -e "remotes::install_github('kuzmenkov111/longears')" \
 && R -e "install.packages('XML', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('jsonlite', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('stringi', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('stringr', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('dplyr', repos='https://cran.r-project.org/')" \
-&& R -e "install.packages('RCurl', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('BiocManager', repos='https://cran.r-project.org/')" \
 && R -e "BiocManager::install('GenomicRanges')" \
 && R -e "BiocManager::install('Biostrings')"
