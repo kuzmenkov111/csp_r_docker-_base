@@ -60,8 +60,9 @@ RUN apt-get update \
  	&& rm -rf /var/lib/apt/lists/*
 
 # basic shiny functionality
-RUN apt-get install -y librabbitmq-dev
-RUN apt-get install -y ncbi-blast+ \
+RUN apt-get update \
+	&& apt-get install -y librabbitmq-dev \
+ 	ncbi-blast+ \
 && R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('remotes', repos='https://cran.r-project.org/')" \
 && R -e "remotes::install_github('kuzmenkov111/longears')" \
