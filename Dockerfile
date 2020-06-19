@@ -75,4 +75,10 @@ RUN apt-get update \
 && R -e "BiocManager::install('GenomicRanges')" \
 && R -e "BiocManager::install('Biostrings')"
 
-CMD ["bash"]
+VOLUME /home/dockerapp/app
+VOLUME /home/dockerapp/task
+VOLUME /files
+
+USER dockerapp
+
+CMD ["Rscript", "/home/dockerapp/app/app.R"]
