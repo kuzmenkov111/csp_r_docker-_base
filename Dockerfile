@@ -40,11 +40,12 @@ ENV LANG en_US.UTF-8
 RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
         && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
 
-ENV R_BASE_VERSION 4.0.0
+ENV R_BASE_VERSION 4.0.1
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update \
 	&& apt-get install -t unstable -y --no-install-recommends \
+                gcc-9-base \
 		littler \
                 r-cran-littler \
 		r-base=${R_BASE_VERSION}-* \
