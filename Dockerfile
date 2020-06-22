@@ -27,6 +27,7 @@ RUN apt-get update \
 		locales \
 		vim-tiny \
 		wget \
+		curl \
 		ca-certificates \
         && add-apt-repository --enable-source --yes "ppa:marutter/rrutter3.5" \
 	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u3.5" 
@@ -64,6 +65,7 @@ RUN apt-get update \
 	&& apt-get install -y librabbitmq-dev \
  	ncbi-blast+ \
 && R -e "install.packages('data.table', repos='https://cran.r-project.org/')" \
+&& R -e "install.packages('RCurl', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('remotes', repos='https://cran.r-project.org/')" \
 && R -e "remotes::install_github('kuzmenkov111/longears')" \
 && R -e "install.packages('XML', repos='https://cran.r-project.org/')" \
