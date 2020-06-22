@@ -28,6 +28,7 @@ RUN apt-get update \
 		vim-tiny \
 		wget \
 		libcurl4-openssl-dev \
+		libxml2-dev \
 		ca-certificates \
         && add-apt-repository --enable-source --yes "ppa:marutter/rrutter3.5" \
 	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u3.5" 
