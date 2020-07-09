@@ -24,6 +24,7 @@ RUN apt-get update \
 		locales \
 		vim-tiny \
 		wget \
+		curl \
 		ca-certificates \
 		fonts-texgyre \
 	&& rm -rf /var/lib/apt/lists/*
