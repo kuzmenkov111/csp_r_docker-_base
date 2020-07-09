@@ -40,7 +40,7 @@ ENV LANG en_US.UTF-8
 RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
         && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default
 
-ENV R_BASE_VERSION 4.0.1
+ENV R_BASE_VERSION 4.0.2
 
 ## Now install R and littler, and create a link for littler in /usr/local/bin
 RUN apt-get update \
